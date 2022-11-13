@@ -1,7 +1,6 @@
 # 📝Blog App
 
-A complete backend REST API based Blog app where users can write blogs in particular categories 🤓
-
+A complete backend REST API based Blog app that manages and displays blogs written by users in different categories
 <br/>
 <hr>
 
