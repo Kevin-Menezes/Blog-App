@@ -6,6 +6,8 @@ import com.ba.payloads.UserDto;
 
 public interface UserService {
 	
+	UserDto registerNewUser(UserDto udto);
+	
 	UserDto createUser(UserDto udto);
 	
 	UserDto updateUser(UserDto udto,Integer userId);

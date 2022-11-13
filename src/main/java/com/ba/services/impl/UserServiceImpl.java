@@ -1,18 +1,23 @@
 package com.ba.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.persistence.Table;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ba.config.AppConstants;
+import com.ba.entities.Role;
 import com.ba.entities.User;
 import com.ba.exceptions.ResourceNotFoundException;
 import com.ba.payloads.UserDto;
+import com.ba.repositories.RoleRepository;
 import com.ba.repositories.UserRepository;
 import com.ba.services.UserService;
 
@@ -25,6 +30,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private RoleRepository rrep;
 	
 	// Insert
 	@Override
@@ -104,6 +115,24 @@ public class UserServiceImpl implements UserService {
 //		udto.setUser_password(user.getUser_password());
 //		udto.setUser_about(user.getUser_about());
 		return udto;
+	}
+
+	@Override
+	public UserDto registerNewUser(UserDto udto) {
+		
+		User user = this.modelMapper.map(udto, User.class);
+		
+		// Encoded the password
+		user.setUser_password(this.passwordEncoder.encode(user.getPassword()));
+		
+		// Roles
+		Role role = this.rrep.findById(AppConstants.NORMAL_USER).get();
+		
+		user.getRoles().add(role);
+		
+		User newUser = this.urep.save(user);
+		
+		return this.modelMapper.map(newUser, UserDto.class);
 	}
 
 }

@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import com.ba.payloads.CommentDto;
 
@@ -18,7 +19,8 @@ import com.ba.payloads.CommentDto;
 public class Post {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="post_id_seq")
+	@SequenceGenerator(name = "post_id_seq", sequenceName = "post_id_seq", initialValue = 1, allocationSize=1)
 	private int post_id;
 	
 	private String title;

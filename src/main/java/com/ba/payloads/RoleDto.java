@@ -1,14 +1,7 @@
-package com.ba.entities;
+package com.ba.payloads;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Role {
+public class RoleDto {
 	
-	@Id
 	private int id;
 	
 	private String name;
@@ -29,11 +22,11 @@ public class Role {
 		this.name = name;
 	}
 
-	public Role() {
+	public RoleDto() {
 		super();
 	}
 
-	public Role(int id, String name) {
+	public RoleDto(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -41,7 +34,7 @@ public class Role {
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", name=" + name + "]";
+		return "RoleDto [id=" + id + ", name=" + name + "]";
 	}
 
 }

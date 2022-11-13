@@ -1,9 +1,14 @@
 package com.ba.payloads;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.ba.entities.Role;
 
 public class UserDto {
 	
@@ -24,6 +29,8 @@ public class UserDto {
 	@NotEmpty
 	@Size(min=3,message="About must be min 3 characters!")
 	private String user_about;
+	
+	private Set<RoleDto> roles = new HashSet<>();
 	
 	
 	public int getUser_id() {
@@ -57,25 +64,30 @@ public class UserDto {
 		this.user_about = user_about;
 	}
 	
+	public Set<RoleDto> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<RoleDto> roles) {
+		this.roles = roles;
+	}
 	
 	public UserDto() {
 		super();
 	}
 	
-	public UserDto(int user_id, String user_name, String user_email, String user_password, String user_about) {
+	public UserDto(int user_id, String user_name, String user_email, String user_password, String user_about,Set<RoleDto> roles) {
 		super();
 		this.user_id = user_id;
 		this.user_name = user_name;
 		this.user_email = user_email;
 		this.user_password = user_password;
 		this.user_about = user_about;
+		this.roles = roles;
 	}
 	
 	@Override
 	public String toString() {
 		return "UserDto [user_id=" + user_id + ", user_name=" + user_name + ", user_email=" + user_email
-				+ ", user_password=" + user_password + ", user_about=" + user_about + "]";
+				+ ", user_password=" + user_password + ", user_about=" + user_about + ", roles=" + roles + "]";
 	}
-
-
 }
