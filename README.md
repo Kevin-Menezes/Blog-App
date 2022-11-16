@@ -44,6 +44,15 @@ This video will show you the working of the app and will guide you on how to use
 <br/>
 <hr>
 
+# Learnings from this project :
+- Gained good knowledge about the structure and workflow of creating a complete backend app.
+- Gained experience in working with REST APIs.
+- Learnt how Spring Security can be used to authenticate and authorize apps.
+- Learnt how to upload a project on AWS cloud.
+
+<br/>
+<hr>
+
 # ✔References
 * [Youtube](https://www.youtube.com/watch?v=Uh-N_6Lccr4)
 * [Google](https://www.google.com/)
